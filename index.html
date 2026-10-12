@@ -236,144 +236,323 @@ input[type=number]{font-variant-numeric:tabular-nums}
 input[type=range]{width:100%;accent-color:var(--accent)}
 .note{color:var(--muted);font-size:.88rem;margin:14px 0 0;max-width:65ch}
 .err{color:var(--accent-hi);font-weight:700}
+
+/* ---------- Screens and navigation ---------- */
+.appbar{flex-wrap:wrap}
+.brand{text-decoration:none;color:inherit}
+.tabs{display:inline-flex;gap:2px;border:1px solid var(--edge);border-radius:var(--r-control);padding:3px;background:var(--sunk)}
+.tabs a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--muted);font-weight:700;padding:8px 14px;min-height:40px;border-radius:7px;transition:background-color 150ms var(--ease),color 150ms var(--ease)}
+.tabs a:hover{color:var(--ink)}
+.tabs a.on{background:var(--accent);color:var(--on-accent)}
+.tabs .ico{width:18px;height:18px}
+@media (max-width:520px){.tabs{width:100%}.tabs a{flex:1;justify-content:center;padding:8px 6px}.tabs .ico{display:none}}
+.screen{max-width:920px;margin:0 auto}
+.screen[data-screen="player"]{max-width:none}
+.screen[data-screen="song"]{max-width:1240px}
+.screen[data-screen="settings"]{max-width:1240px}
+.screenhead{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;margin:6px 0 18px}
+.screenhead h1,.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2rem,6vw,2.8rem);line-height:1;margin:0;letter-spacing:-.005em;overflow-wrap:anywhere}
+.back{display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:var(--muted);font-weight:700;padding:8px 10px 8px 4px;margin:0 0 6px -4px;min-height:44px;cursor:pointer;border-radius:var(--r-control)}
+.back:hover{color:var(--ink)}
+.back .ico{width:18px;height:18px}
+.btn.primary{background:linear-gradient(180deg,var(--accent-hi),var(--accent));border-color:transparent;color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.06);background:linear-gradient(180deg,var(--accent-hi),var(--accent))}
+.btn.danger-fill{background:#e5484d;border-color:transparent;color:#fff}
+.btn.block{width:100%}
+.btn.small .ico{width:15px;height:15px}
+
+/* Setlist cards */
+.cards{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.setcard{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:6px 10px 6px 6px;transition:border-color 150ms var(--ease)}
+.setcard:hover{border-color:var(--edge-hi)}
+.setcard.playing{border-color:rgba(61,220,132,.55)}
+.cardmain{display:grid;gap:3px;padding:14px;text-decoration:none;color:inherit;border-radius:12px;min-width:0}
+.cardname{font-family:var(--display);font-weight:700;font-size:1.6rem;line-height:1.05;overflow-wrap:anywhere}
+.meta{color:var(--muted)}
+.preview{color:var(--faint);font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty{padding:28px 24px;list-style:none}
+.empty h2{font-family:var(--display);font-weight:600;font-size:1.5rem;margin:0 0 6px}
+
+/* One setlist */
+.hero{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;padding:clamp(18px,3vw,28px);margin-bottom:14px}
+.hero-text{min-width:0}
+.hero .meta{margin:8px 0 0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tracks,.songs{list-style:none;margin:0;padding:6px;display:grid;gap:2px}
+.tracks li,.songs li{display:grid;grid-template-columns:1fr auto;gap:4px;align-items:center;border-radius:var(--r-control);transition:background-color 150ms var(--ease)}
+.tracks li:hover,.songs li:hover{background:rgba(255,255,255,.04)}
+.tracks li.sel,.songs li.sel{background:rgba(255,255,255,.07);box-shadow:inset 3px 0 0 var(--accent)}
+.tracks li.sel .num,.songs li.sel .num{color:var(--accent-hi)}
+.tracks li.playing,.songs li.playing{box-shadow:inset 3px 0 0 var(--go)}
+.tracks li.empty{display:block;padding:18px}
+.tracks .iconbtns{display:flex;gap:2px;padding-right:6px}
+a.ib{text-decoration:none}
+.belowlist{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px}
+.songs li{grid-template-columns:1fr}
+.queue{padding:18px}
+.queue h2{font-family:var(--display);font-weight:600;font-size:1.4rem;margin:0 0 10px}
+.queue .songs{padding:0}
+@media (max-width:640px){
+  .tracks li{grid-template-columns:1fr}
+  .tracks .iconbtns{justify-content:flex-end;padding:0 6px 8px}
+}
+
+/* Editor */
+.screen[data-screen="song"] .cols{grid-template-columns:minmax(0,1fr) minmax(0,1.9fr);margin-top:0}
+@media (max-width:980px){.screen[data-screen="song"] .cols{grid-template-columns:minmax(0,1fr)}}
+.screen[data-screen="song"] .ed + .ed{margin-top:0}
+#delSong{margin-top:18px}
+.locked-note{color:var(--accent-hi);font-weight:700;margin:0 0 12px}
+fieldset:disabled{opacity:.6}
+.settings-cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-top:0}
+.settings-cols .ed + .ed{margin-top:0}
+@media (max-width:860px){.settings-cols{grid-template-columns:minmax(0,1fr)}}
+
+/* Library */
+.searchfield{margin:16px 0 12px}
+.lib.glass{padding:6px;max-height:none}
+.librow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px;text-decoration:none;color:inherit;border-radius:var(--r-control)}
+.librow:hover{background:rgba(255,255,255,.05)}
+.lib li:has(.librow){padding:0}
+
+/* Player */
+.screen[data-screen="player"] .top{grid-template-columns:minmax(0,1fr) 330px}
+@media (max-width:980px){.screen[data-screen="player"] .top{grid-template-columns:minmax(0,1fr)}}
+.playBtn-disabled{opacity:.4}
+
+/* Now-playing bar and toast */
+.mini{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:min(640px,calc(100% - 24px));display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;z-index:20;border-color:rgba(61,220,132,.45)}
+.mini-main{flex:1;display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;min-width:0}
+.mini-dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--go);box-shadow:0 0 0 4px var(--go-soft)}
+.mini-text{display:grid;min-width:0}
+.mini-text b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini-text span{color:var(--muted);font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.has-mini .wrap{padding-bottom:110px}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:#26232c;border:1px solid var(--edge-hi);color:var(--ink);padding:10px 16px;border-radius:var(--r-control);font-weight:700;opacity:0;pointer-events:none;transition:opacity 180ms var(--ease),transform 180ms var(--ease);z-index:30;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* Dialogs */
+.dialog{color:var(--ink);padding:22px;width:min(460px,calc(100% - 32px));background:#19171e;border:1px solid var(--edge-hi)}
+.dialog.wide{width:min(560px,calc(100% - 32px));max-height:min(80vh,720px)}
+.dialog::backdrop{background:rgba(5,4,8,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.dialog h2{font-family:var(--display);font-weight:600;font-size:1.6rem;line-height:1.1;margin:0 0 8px}
+.dialog .hint{margin:0 0 14px}
+.dlg-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.dlg-head h2{margin:0}
+.dlg-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.dialog .lib{max-height:min(44vh,380px)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="appbar">
-    <span class="brand">Cue Light</span>
-    <div class="viewtoggle" role="group" aria-label="View">
-      <button type="button" data-mode="perform" aria-pressed="true">Perform</button>
-      <button type="button" data-mode="edit" aria-pressed="false">Edit</button>
-    </div>
+    <a class="brand" href="#/">Cue Light</a>
+    <nav class="tabs" aria-label="Main">
+      <a href="#/" data-tab="setlists" data-icon="list">Setlists</a>
+      <a href="#/songs" data-tab="songs" data-icon="music">Songs</a>
+      <a href="#/settings" data-tab="settings" data-icon="gear">Settings</a>
+    </nav>
   </header>
 
-  <div class="top">
-    <section class="stage glass" aria-label="Stage display">
-      <div class="songline">
-        <h1 id="stTitle">Untitled song</h1>
-        <span class="meta" id="stMeta"></span>
+  <main>
+    <!-- ============ Setlists ============ -->
+    <section class="screen" data-screen="setlists" hidden>
+      <div class="screenhead">
+        <h1>Setlists</h1>
+        <button class="btn primary" type="button" id="newSetBtn" data-icon="plus">New setlist</button>
       </div>
-      <div class="now">
-        <p class="section-name" id="stSection">Ready</p>
-        <div class="barcount" id="stBar"></div>
-      </div>
-      <div class="lamps" id="lamps" aria-hidden="true"></div>
-      <div class="cue" id="cue" role="status">
-        <span class="bulb" aria-hidden="true"></span>
-        <span class="state" id="cueState">Next</span>
-        <span class="what" id="cueWhat"></span>
-      </div>
-      <div class="transport">
-        <button class="btn play" id="playBtn" type="button">Play</button>
-        <button class="btn" id="loopBtn" type="button" aria-pressed="false" data-icon="repeat">Loop section</button>
-        <button class="btn" id="skipBtn" type="button" disabled data-icon="skip">Skip to next</button>
-        <span class="keys" id="keysHelp"></span>
-      </div>
-      <p class="upnext" id="upNext"></p>
+      <ul class="cards" id="setCards"></ul>
     </section>
 
-    <section class="setlist glass" aria-label="Setlist">
-      <h2 id="setTitle">Setlist</h2>
-      <fieldset id="setFieldset">
-        <div class="sethead edit-only">
-          <select id="setSel" aria-label="Choose setlist"></select>
-          <button class="btn" type="button" id="newSet">New setlist</button>
+    <!-- ============ One setlist ============ -->
+    <section class="screen" data-screen="setlist" hidden>
+      <button class="back" type="button" data-back data-icon="back">Setlists</button>
+      <div class="glass hero">
+        <div class="hero-text">
+          <h1 id="slName"></h1>
+          <p class="meta" id="slMeta"></p>
         </div>
-        <div class="field edit-only"><label for="setName">Name</label><input type="text" id="setName" maxlength="60"></div>
-        <ol class="songs" id="songs"></ol>
-        <p class="setfoot" id="setFoot"></p>
-        <button class="btn quiet edit-only" type="button" id="delSet" style="margin-top:8px">Delete setlist</button>
+        <div class="hero-actions">
+          <button class="btn play" type="button" id="slPlay" data-icon="play">Play setlist</button>
+          <button class="btn" type="button" id="slRename" data-icon="pencil">Rename</button>
+          <button class="btn quiet" type="button" id="slDelete" data-icon="trash">Delete</button>
+        </div>
+      </div>
+      <ol class="tracks glass" id="tracks"></ol>
+      <div class="belowlist">
+        <button class="btn primary" type="button" id="addSongBtn" data-icon="plus">Add a song</button>
+        <p class="hint">Tap a song to open it in the player. Use the pencil to edit its tempo and roadmap.</p>
+      </div>
+    </section>
 
-        <div class="library edit-only">
-          <div class="libhead">
-            <h3>Song library</h3>
-            <button class="btn small" type="button" id="newSongBtn" data-icon="plus">New song</button>
-          </div>
-          <p class="hint">Every song is saved here with its tempo, time signature and cues. Set a song up once, then add it to any setlist.</p>
-          <div class="field" style="margin:12px 0 4px"><label for="libSearch">Find a song</label><input type="search" id="libSearch" autocomplete="off"></div>
-          <ul class="lib" id="lib"></ul>
+    <!-- ============ Song editor ============ -->
+    <section class="screen" data-screen="song" hidden>
+      <button class="back" type="button" data-back data-icon="back" id="edBack">Back</button>
+      <div class="screenhead">
+        <h1 id="edHeading">Song</h1>
+        <button class="btn" type="button" id="edOpen" data-icon="play">Open in player</button>
+      </div>
+      <p class="locked-note" id="edLocked" hidden>Stop playback to make changes.</p>
+      <fieldset id="edFieldset">
+        <div class="cols">
+          <section class="ed glass" aria-labelledby="h-details">
+            <h2 id="h-details">Details</h2>
+            <div class="field"><label for="fTitle">Title</label><input type="text" id="fTitle" maxlength="80"></div>
+            <div class="two">
+              <div class="field"><label for="fArtist">Artist</label><input type="text" id="fArtist" maxlength="80"></div>
+              <div class="field"><label for="fKey">Key</label><input type="text" id="fKey" maxlength="6" placeholder="e.g. Ab"></div>
+            </div>
+            <div class="two">
+              <div class="field"><label for="fBpm">Tempo (BPM)</label><input type="number" id="fBpm" min="30" max="260" step="1"></div>
+              <div class="field"><label for="fTs">Time signature</label><select id="fTs"></select></div>
+            </div>
+            <div class="field"><small>In 6/8, 9/8 and 12/8 the tempo is the dotted-quarter pulse. The click plays every eighth, with the pulses stronger.</small></div>
+            <div class="check"><input type="checkbox" id="fCountIn"><label for="fCountIn">Count in before the first section</label></div>
+            <div class="field">
+              <label for="fAfter">When this song ends</label>
+              <select id="fAfter">
+                <option value="stop">Stop and get the next song ready</option>
+                <option value="continue">Go straight into the next song</option>
+              </select>
+            </div>
+            <div class="check"><input type="checkbox" id="fChecked"><label for="fChecked">Bar counts checked against our chart</label></div>
+          </section>
+
+          <section class="ed glass" aria-labelledby="h-roadmap">
+            <h2 id="h-roadmap">Roadmap</h2>
+            <div class="row colhead" aria-hidden="true"><span></span><span>Cue</span><span>Label on screen</span><span>Bars</span><span>Tempo</span><span>Time sig</span><span></span></div>
+            <div class="rows" id="rows"></div>
+            <div class="addrow"><button class="btn" type="button" id="addSec" data-icon="plus">Add section</button></div>
+            <p class="note">Leave tempo and time signature on “Song” to use the song’s settings. Change them only for sections that really shift.</p>
+          </section>
         </div>
+        <button class="btn quiet" type="button" id="delSong" data-icon="trash">Delete song from library</button>
       </fieldset>
     </section>
-  </div>
 
-  <div class="strip-head">
-    <h2 id="stripTitle">Arrangement</h2>
-    <p class="hint" id="stripHint">Click a section to start from it.</p>
-  </div>
-  <div class="strip" id="strip"></div>
+    <!-- ============ Player ============ -->
+    <section class="screen" data-screen="player" hidden>
+      <button class="back" type="button" data-back data-icon="back" id="plBack">Setlist</button>
+      <div class="top">
+        <section class="stage glass" aria-label="Stage display">
+          <div class="songline">
+            <h1 id="stTitle">Untitled song</h1>
+            <span class="meta" id="stMeta"></span>
+          </div>
+          <div class="now">
+            <p class="section-name" id="stSection">Ready</p>
+            <div class="barcount" id="stBar"></div>
+          </div>
+          <div class="lamps" id="lamps" aria-hidden="true"></div>
+          <div class="cue" id="cue" role="status">
+            <span class="bulb" aria-hidden="true"></span>
+            <span class="state" id="cueState">Next</span>
+            <span class="what" id="cueWhat"></span>
+          </div>
+          <div class="transport">
+            <button class="btn play" id="playBtn" type="button">Play</button>
+            <button class="btn" id="loopBtn" type="button" aria-pressed="false" data-icon="repeat">Loop section</button>
+            <button class="btn" id="skipBtn" type="button" disabled data-icon="skip">Skip to next</button>
+            <span class="keys" id="keysHelp"></span>
+          </div>
+          <p class="upnext" id="upNext"></p>
+        </section>
 
-  <div class="cols edit-only">
-    <section class="ed glass">
-      <h2>Sections</h2>
-      <fieldset id="secFieldset">
-        <p class="locked">Stop playback to edit.</p>
-        <div class="row colhead" aria-hidden="true"><span></span><span>Cue</span><span>Label on screen</span><span>Bars</span><span>Tempo</span><span>Time sig</span><span></span></div>
-        <div class="rows" id="rows"></div>
-        <div class="addrow"><button class="btn" type="button" id="addSec" data-icon="plus">Add section</button></div>
-        <p class="note">Leave tempo and time signature on “Song” to use the song’s settings. Change them only for sections that really shift.</p>
-      </fieldset>
+        <aside class="queue glass" aria-label="Setlist queue">
+          <h2 id="qName">Setlist</h2>
+          <ol class="songs" id="queue"></ol>
+          <p class="setfoot" id="qFoot"></p>
+        </aside>
+      </div>
+
+      <div class="strip-head">
+        <h2 id="stripTitle">Roadmap</h2>
+        <p class="hint" id="stripHint">Tap a section to start from it.</p>
+      </div>
+      <div class="strip" id="strip"></div>
     </section>
 
-    <div>
-      <section class="ed glass">
-        <h2>Song</h2>
-        <fieldset id="songFieldset">
-          <div class="field"><label for="fTitle">Title</label><input type="text" id="fTitle" maxlength="80"></div>
-          <div class="two">
-            <div class="field"><label for="fArtist">Artist</label><input type="text" id="fArtist" maxlength="80"></div>
-            <div class="field"><label for="fKey">Key</label><input type="text" id="fKey" maxlength="6" placeholder="e.g. Ab"></div>
-          </div>
-          <div class="two">
-            <div class="field"><label for="fBpm">Tempo (BPM)</label><input type="number" id="fBpm" min="30" max="260" step="1"></div>
-            <div class="field"><label for="fTs">Time signature</label><select id="fTs"></select></div>
-          </div>
-          <div class="field"><small>In 6/8, 9/8 and 12/8 the tempo is the dotted-quarter pulse. The click plays every eighth, with the pulses stronger.</small></div>
-          <div class="check"><input type="checkbox" id="fCountIn"><label for="fCountIn">Count in before the first section</label></div>
+    <!-- ============ Songs (library) ============ -->
+    <section class="screen" data-screen="songs" hidden>
+      <div class="screenhead">
+        <h1>Songs</h1>
+        <button class="btn primary" type="button" id="newSongBtn" data-icon="plus">New song</button>
+      </div>
+      <p class="hint">Every song is saved here with its tempo, time signature and roadmap. Set a song up once, then add it to any setlist.</p>
+      <div class="field searchfield"><label for="libSearch">Find a song</label><input type="search" id="libSearch" autocomplete="off"></div>
+      <ul class="lib glass" id="lib"></ul>
+    </section>
+
+    <!-- ============ Settings ============ -->
+    <section class="screen" data-screen="settings" hidden>
+      <div class="screenhead"><h1>Settings</h1></div>
+      <div class="cols settings-cols">
+        <section class="ed glass">
+          <h2>Sound</h2>
           <div class="field">
-            <label for="fAfter">When this song ends</label>
-            <select id="fAfter">
-              <option value="stop">Stop and get the next song ready</option>
-              <option value="continue">Go straight into the next song</option>
+            <label for="fCueMode">Voice cues</label>
+            <select id="fCueMode">
+              <option value="full">Section name, then count (2 bars ahead)</option>
+              <option value="name">Section name only (1 bar ahead)</option>
+              <option value="off">Off (click only)</option>
             </select>
           </div>
-          <div class="check"><input type="checkbox" id="fChecked"><label for="fChecked">Bar counts checked against our chart</label></div>
-          <button class="btn quiet" type="button" id="delSong">Delete song</button>
-        </fieldset>
-      </section>
-
-      <section class="ed glass">
-        <h2>Sound</h2>
-        <div class="field">
-          <label for="fCueMode">Voice cues</label>
-          <select id="fCueMode">
-            <option value="full">Section name, then count (2 bars ahead)</option>
-            <option value="name">Section name only (1 bar ahead)</option>
-            <option value="off">Off (click only)</option>
-          </select>
-        </div>
-        <div class="field"><label for="fClickVol">Click volume</label><input type="range" id="fClickVol" min="0" max="1" step="0.01"></div>
-        <div class="field"><label for="fCueVol">Cue volume</label><input type="range" id="fCueVol" min="0" max="1" step="0.01"></div>
-        <div class="check"><input type="checkbox" id="fSplit"><label for="fSplit">Click in left ear, cues in right ear<br><small style="color:var(--muted)">For in-ear mixes fed from a stereo output.</small></label></div>
-        <div class="check"><input type="checkbox" id="fWake"><label for="fWake">Keep the screen awake while playing</label></div>
-        <p class="note" id="audioNote"></p>
-      </section>
-
-      <section class="ed glass">
-        <h2>Backup</h2>
-        <p class="hint">Your songs and setlists are stored in this browser only. Export a backup file to keep them safe, or import it on another device.</p>
-        <div class="transport" style="margin-top:14px">
-          <button class="btn" type="button" id="exportBtn" data-icon="download">Export backup</button>
-          <button class="btn" type="button" id="importBtn" data-icon="upload">Import backup</button>
-          <input type="file" id="importFile" accept=".json,application/json" hidden>
-        </div>
-        <p class="note" id="backupNote" role="status"></p>
-      </section>
-    </div>
-  </div>
+          <div class="field"><label for="fClickVol">Click volume</label><input type="range" id="fClickVol" min="0" max="1" step="0.01"></div>
+          <div class="field"><label for="fCueVol">Cue volume</label><input type="range" id="fCueVol" min="0" max="1" step="0.01"></div>
+          <div class="check"><input type="checkbox" id="fSplit"><label for="fSplit">Click in left ear, cues in right ear<br><small>For in-ear mixes fed from a stereo output.</small></label></div>
+          <div class="check"><input type="checkbox" id="fWake"><label for="fWake">Keep the screen awake while playing</label></div>
+          <p class="note" id="audioNote"></p>
+        </section>
+        <section class="ed glass">
+          <h2>Backup</h2>
+          <p class="hint">Your songs and setlists are stored in this browser only. Export a backup file to keep them safe, or import it on another device.</p>
+          <div class="transport" style="margin-top:14px">
+            <button class="btn" type="button" id="exportBtn" data-icon="download">Export backup</button>
+            <button class="btn" type="button" id="importBtn" data-icon="upload">Import backup</button>
+            <input type="file" id="importFile" accept=".json,application/json" hidden>
+          </div>
+          <p class="note" id="backupNote" role="status"></p>
+        </section>
+      </div>
+    </section>
+  </main>
 </div>
+
+<!-- Now-playing bar: shown while playing and you're on another screen -->
+<div class="mini glass" id="mini" hidden>
+  <a class="mini-main" href="#/play">
+    <span class="mini-dot" aria-hidden="true"></span>
+    <span class="mini-text"><b id="miniSong"></b><span id="miniSec"></span></span>
+  </a>
+  <button class="btn small" type="button" id="miniStop" data-icon="stop">Stop</button>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Ask / confirm dialog -->
+<dialog id="dlg" class="dialog glass">
+  <form method="dialog" id="dlgForm">
+    <h2 id="dlgTitle"></h2>
+    <p id="dlgMsg" class="hint"></p>
+    <div class="field" id="dlgField"><label for="dlgInput" id="dlgLabel"></label><input type="text" id="dlgInput" maxlength="60" autocomplete="off"></div>
+    <div class="dlg-actions">
+      <button class="btn quiet" type="button" id="dlgCancel">Cancel</button>
+      <button class="btn primary" type="submit" id="dlgOk">OK</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Add a song to a setlist -->
+<dialog id="addDlg" class="dialog glass wide">
+  <div class="dlg-head">
+    <h2>Add a song</h2>
+    <button class="ib" type="button" id="addClose" aria-label="Close" data-icon="x"></button>
+  </div>
+  <button class="btn primary block" type="button" id="addNew" data-icon="plus">Create a new song</button>
+  <div class="field" style="margin:16px 0 6px"><label for="addSearch">Or pick one you’ve saved</label><input type="search" id="addSearch" autocomplete="off" placeholder="Search by title or artist"></div>
+  <ul class="lib" id="addList"></ul>
+  <div class="dlg-actions"><button class="btn" type="button" id="addDone">Done</button></div>
+</dialog>
 
 <script>
 (() => {
@@ -430,7 +609,7 @@ const defaultSettings = () => ({ cueMode: "full", clickVol: 0.8, cueVol: 0.9, sp
 let data, settings;
 try {
   const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
-  if (saved && saved.songs && saved.setlists && saved.setlists.length){
+  if (saved && saved.songs && Array.isArray(saved.setlists)){
     data = { songs: saved.songs, setlists: saved.setlists, activeSet: saved.activeSet };
     settings = Object.assign(defaultSettings(), saved.settings);
   } else {
@@ -444,14 +623,14 @@ try {
   }
 } catch (e) { data = seed(); settings = defaultSettings(); }
 Object.values(data.songs).forEach(s => s.sections.forEach(x => { x.id = uid++; }));
-if (!data.setlists.some(l => l.id === data.activeSet)) data.activeSet = data.setlists[0].id;
+if (!data.setlists.some(l => l.id === data.activeSet)) data.activeSet = data.setlists[0] ? data.setlists[0].id : null;
 
 function save(){
   try { localStorage.setItem(STORE_KEY, JSON.stringify({ songs: data.songs, setlists: data.setlists, activeSet: data.activeSet, settings })); }
   catch (e) { /* storage unavailable: keep working in memory */ }
 }
-const activeSet = () => data.setlists.find(l => l.id === data.activeSet);
-const setSongs = () => activeSet().songIds.map(id => data.songs[id]).filter(Boolean);
+const activeSet = () => data.setlists.find(l => l.id === data.activeSet) || null;
+const setSongs = () => { const l = activeSet(); return l ? l.songIds.map(id => data.songs[id]).filter(Boolean) : []; };
 
 let song = null;      // the song loaded on stage
 let songPos = 0;      // its position in the setlist
@@ -648,7 +827,7 @@ function pump(){
     const finishedPos = songPos;
     stop();
     // Get the next song ready so the team just presses Play.
-    if (finishedPos + 1 < setSongs().length){ loadSongAt(finishedPos + 1); refreshAll(); }
+    if (finishedPos + 1 < setSongs().length){ loadSongAt(finishedPos + 1); save(); refreshPlayer(); }
   }
 }
 
@@ -706,7 +885,7 @@ document.addEventListener("visibilitychange", async () => {
 /* ===================== Stage UI ===================== */
 const $ = id => document.getElementById(id);
 // Icons: Phosphor (MIT), paths copied verbatim from @phosphor-icons/core 2.1.1
-const ICON_PATHS = {"play": "M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z", "stop": "M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z", "repeat": "M20,128A76.08,76.08,0,0,1,96,52h99l-3.52-3.51a12,12,0,1,1,17-17l24,24a12,12,0,0,1,0,17l-24,24a12,12,0,0,1-17-17L195,76H96a52.06,52.06,0,0,0-52,52,12,12,0,0,1-24,0Zm204-12a12,12,0,0,0-12,12,52.06,52.06,0,0,1-52,52H61l3.52-3.51a12,12,0,1,0-17-17l-24,24a12,12,0,0,0,0,17l24,24a12,12,0,1,0,17-17L61,204h99a76.08,76.08,0,0,0,76-76A12,12,0,0,0,224,116Z", "skip": "M200,28a12,12,0,0,0-12,12v62l-113.45-71A20,20,0,0,0,44,47.88V208.12A20,20,0,0,0,74.55,225L188,154v62a12,12,0,0,0,24,0V40A12,12,0,0,0,200,28ZM68,200.73V55.27L184.3,128Z", "up": "M208.49,120.49a12,12,0,0,1-17,0L140,69V216a12,12,0,0,1-24,0V69L64.49,120.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0l72,72A12,12,0,0,1,208.49,120.49Z", "down": "M208.49,152.49l-72,72a12,12,0,0,1-17,0l-72-72a12,12,0,0,1,17-17L116,187V40a12,12,0,0,1,24,0V187l51.51-51.52a12,12,0,0,1,17,17Z", "x": "M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z", "plus": "M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z", "download": "M228,144v64a12,12,0,0,1-12,12H40a12,12,0,0,1-12-12V144a12,12,0,0,1,24,0v52H204V144a12,12,0,0,1,24,0Zm-108.49,8.49a12,12,0,0,0,17,0l40-40a12,12,0,0,0-17-17L140,115V32a12,12,0,0,0-24,0v83L96.49,95.51a12,12,0,0,0-17,17Z", "upload": "M228,144v64a12,12,0,0,1-12,12H40a12,12,0,0,1-12-12V144a12,12,0,0,1,24,0v52H204V144a12,12,0,0,1,24,0ZM96.49,80.49,116,61v83a12,12,0,0,0,24,0V61l19.51,19.52a12,12,0,1,0,17-17l-40-40a12,12,0,0,0-17,0l-40,40a12,12,0,1,0,17,17Z"};
+const ICON_PATHS = {"play": "M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z", "stop": "M216,56V200a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40H200A16,16,0,0,1,216,56Z", "repeat": "M20,128A76.08,76.08,0,0,1,96,52h99l-3.52-3.51a12,12,0,1,1,17-17l24,24a12,12,0,0,1,0,17l-24,24a12,12,0,0,1-17-17L195,76H96a52.06,52.06,0,0,0-52,52,12,12,0,0,1-24,0Zm204-12a12,12,0,0,0-12,12,52.06,52.06,0,0,1-52,52H61l3.52-3.51a12,12,0,1,0-17-17l-24,24a12,12,0,0,0,0,17l24,24a12,12,0,1,0,17-17L61,204h99a76.08,76.08,0,0,0,76-76A12,12,0,0,0,224,116Z", "skip": "M200,28a12,12,0,0,0-12,12v62l-113.45-71A20,20,0,0,0,44,47.88V208.12A20,20,0,0,0,74.55,225L188,154v62a12,12,0,0,0,24,0V40A12,12,0,0,0,200,28ZM68,200.73V55.27L184.3,128Z", "up": "M208.49,120.49a12,12,0,0,1-17,0L140,69V216a12,12,0,0,1-24,0V69L64.49,120.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0l72,72A12,12,0,0,1,208.49,120.49Z", "down": "M208.49,152.49l-72,72a12,12,0,0,1-17,0l-72-72a12,12,0,0,1,17-17L116,187V40a12,12,0,0,1,24,0V187l51.51-51.52a12,12,0,0,1,17,17Z", "x": "M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z", "plus": "M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z", "download": "M228,144v64a12,12,0,0,1-12,12H40a12,12,0,0,1-12-12V144a12,12,0,0,1,24,0v52H204V144a12,12,0,0,1,24,0Zm-108.49,8.49a12,12,0,0,0,17,0l40-40a12,12,0,0,0-17-17L140,115V32a12,12,0,0,0-24,0v83L96.49,95.51a12,12,0,0,0-17,17Z", "upload": "M228,144v64a12,12,0,0,1-12,12H40a12,12,0,0,1-12-12V144a12,12,0,0,1,24,0v52H204V144a12,12,0,0,1,24,0ZM96.49,80.49,116,61v83a12,12,0,0,0,24,0V61l19.51,19.52a12,12,0,1,0,17-17l-40-40a12,12,0,0,0-17,0l-40,40a12,12,0,1,0,17,17Z", "trash": "M216,48H180V36A28,28,0,0,0,152,8H104A28,28,0,0,0,76,36V48H40a12,12,0,0,0,0,24h4V208a20,20,0,0,0,20,20H192a20,20,0,0,0,20-20V72h4a12,12,0,0,0,0-24ZM100,36a4,4,0,0,1,4-4h48a4,4,0,0,1,4,4V48H100Zm88,168H68V72H188ZM116,104v64a12,12,0,0,1-24,0V104a12,12,0,0,1,24,0Zm48,0v64a12,12,0,0,1-24,0V104a12,12,0,0,1,24,0Z", "pencil": "M230.14,70.54,185.46,25.85a20,20,0,0,0-28.29,0L33.86,149.17A19.85,19.85,0,0,0,28,163.31V208a20,20,0,0,0,20,20H92.69a19.86,19.86,0,0,0,14.14-5.86L230.14,98.82a20,20,0,0,0,0-28.28ZM91,204H52V165l84-84,39,39ZM192,103,153,64l18.34-18.34,39,39Z", "back": "M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z", "music": "M215.38,14.54a12,12,0,0,0-10.29-2.18l-128,32A12,12,0,0,0,68,56V159.35A40,40,0,1,0,92,196V113.37l104-26v40A40,40,0,1,0,220,164V24A12,12,0,0,0,215.38,14.54ZM52,212a16,16,0,1,1,16-16A16,16,0,0,1,52,212ZM92,88.63V65.37l104-26V62.63ZM180,180a16,16,0,1,1,16-16A16,16,0,0,1,180,180Z", "gear": "M128,76a52,52,0,1,0,52,52A52.06,52.06,0,0,0,128,76Zm0,80a28,28,0,1,1,28-28A28,28,0,0,1,128,156Zm92-27.21v-1.58l14-17.51a12,12,0,0,0,2.23-10.59A111.75,111.75,0,0,0,225,71.89,12,12,0,0,0,215.89,66L193.61,63.5l-1.11-1.11L190,40.1A12,12,0,0,0,184.11,31a111.67,111.67,0,0,0-27.23-11.27A12,12,0,0,0,146.3,22L128.79,36h-1.58L109.7,22a12,12,0,0,0-10.59-2.23A111.75,111.75,0,0,0,71.89,31.05,12,12,0,0,0,66,40.11L63.5,62.39,62.39,63.5,40.1,66A12,12,0,0,0,31,71.89,111.67,111.67,0,0,0,19.77,99.12,12,12,0,0,0,22,109.7l14,17.51v1.58L22,146.3a12,12,0,0,0-2.23,10.59,111.75,111.75,0,0,0,11.29,27.22A12,12,0,0,0,40.11,190l22.28,2.48,1.11,1.11L66,215.9A12,12,0,0,0,71.89,225a111.67,111.67,0,0,0,27.23,11.27A12,12,0,0,0,109.7,234l17.51-14h1.58l17.51,14a12,12,0,0,0,10.59,2.23A111.75,111.75,0,0,0,184.11,225a12,12,0,0,0,5.91-9.06l2.48-22.28,1.11-1.11L215.9,190a12,12,0,0,0,9.06-5.91,111.67,111.67,0,0,0,11.27-27.23A12,12,0,0,0,234,146.3Zm-24.12-4.89a70.1,70.1,0,0,1,0,8.2,12,12,0,0,0,2.61,8.22l12.84,16.05A86.47,86.47,0,0,1,207,166.86l-20.43,2.27a12,12,0,0,0-7.65,4,69,69,0,0,1-5.8,5.8,12,12,0,0,0-4,7.65L166.86,207a86.47,86.47,0,0,1-10.49,4.35l-16.05-12.85a12,12,0,0,0-7.5-2.62c-.24,0-.48,0-.72,0a70.1,70.1,0,0,1-8.2,0,12.06,12.06,0,0,0-8.22,2.6L99.63,211.33A86.47,86.47,0,0,1,89.14,207l-2.27-20.43a12,12,0,0,0-4-7.65,69,69,0,0,1-5.8-5.8,12,12,0,0,0-7.65-4L49,166.86a86.47,86.47,0,0,1-4.35-10.49l12.84-16.05a12,12,0,0,0,2.61-8.22,70.1,70.1,0,0,1,0-8.2,12,12,0,0,0-2.61-8.22L44.67,99.63A86.47,86.47,0,0,1,49,89.14l20.43-2.27a12,12,0,0,0,7.65-4,69,69,0,0,1,5.8-5.8,12,12,0,0,0,4-7.65L89.14,49a86.47,86.47,0,0,1,10.49-4.35l16.05,12.85a12.06,12.06,0,0,0,8.22,2.6,70.1,70.1,0,0,1,8.2,0,12,12,0,0,0,8.22-2.6l16.05-12.85A86.47,86.47,0,0,1,166.86,49l2.27,20.43a12,12,0,0,0,4,7.65,69,69,0,0,1,5.8,5.8,12,12,0,0,0,7.65,4L207,89.14a86.47,86.47,0,0,1,4.35,10.49l-12.84,16.05A12,12,0,0,0,195.88,123.9Z", "list": "M76,64A12,12,0,0,1,88,52H216a12,12,0,0,1,0,24H88A12,12,0,0,1,76,64Zm140,52H88a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Zm0,64H88a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24ZM44,112a16,16,0,1,0,16,16A16,16,0,0,0,44,112Zm0-64A16,16,0,1,0,60,64,16,16,0,0,0,44,48Zm0,128a16,16,0,1,0,16,16A16,16,0,0,0,44,176Z"};
 const icon = n => `<svg class="ico" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="${ICON_PATHS[n]}"/></svg>`;
 document.querySelectorAll("[data-icon]").forEach(b => b.insertAdjacentHTML("afterbegin", icon(b.dataset.icon)));
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
@@ -770,7 +949,7 @@ function drawEvent(ev, now){
     // a new song started inside a continuous run
     lastSongDrawn = S; lastDrawn = null;
     $("stTitle").textContent = S.title || "Untitled song";
-    renderStrip(S); renderSetlist(ev.pos); renderUpNext(ev.pos); renderSongPanels();
+    renderStrip(S); renderQueue(ev.pos); renderUpNext(ev.pos);
   }
   buildLamps(ev.pulses);
   if (ev.isPulse) setLamp(ev.pulse);
@@ -794,6 +973,7 @@ function drawEvent(ev, now){
   const key = ev.i + ":" + ev.bar;
   if (key !== lastDrawn){
     lastDrawn = key;
+    updateMini(ev);
     [...stripEl.children].forEach((el, k) => {
       el.classList.toggle("current", k === ev.i && !ev.countIn);
       el.classList.toggle("queued", k === queued);
@@ -809,22 +989,23 @@ function setPlayingUI(on){
   pb.innerHTML = icon(on ? "stop" : "play") + (on ? "Stop" : "Play");
   pb.classList.toggle("stop", on);
   $("skipBtn").disabled = !on;
-  ["secFieldset","songFieldset","setFieldset"].forEach(id => { $(id).disabled = on; });
+  document.body.classList.toggle("is-playing", on);
   $("stripHint").textContent = on
-    ? "Click a section to jump there when the current one ends. Do it 2 bars early so the cue can announce it."
-    : "Click a section to start from it.";
+    ? "Tap a section to jump there when the current one ends. Do it 2 bars early so the cue can announce it."
+    : "Tap a section to start from it.";
   $("keysHelp").innerHTML = on
     ? "<span><kbd>Space</kbd>stop</span><span><kbd>L</kbd>loop</span><span><kbd>→</kbd>skip</span><span><kbd>←</kbd>repeat</span>"
     : "<span><kbd>Space</kbd>play</span><span><kbd>→</kbd>next song</span><span><kbd>←</kbd>previous song</span>";
   lastDrawn = null; lastSongDrawn = on ? song : null;
-  document.querySelectorAll(".songs li").forEach((li, k) => li.classList.toggle("playing", on && k === songPos));
-  if (!on) refreshAll();
+  // Re-draw whatever screen is showing so locks, highlights and the now-playing bar are current.
+  if (route.name === "player") refreshPlayer(); else render();
+  updateMini();
 }
 
 /* ===================== Arrangement strip ===================== */
 const stripEl = $("strip");
 function renderStrip(S = song){
-  $("stripTitle").textContent = S ? `Arrangement: ${S.title || "Untitled song"}` : "Arrangement";
+  $("stripTitle").textContent = S ? `Roadmap: ${S.title || "Untitled song"}` : "Roadmap";
   if (!S){ stripEl.innerHTML = ""; return; }
   stripEl.innerHTML = S.sections.map((s, k) => `
     <button type="button" class="seg${!P && k === startIdx ? " start" : ""}" style="flex-grow:${s.bars}" data-k="${k}"
@@ -843,96 +1024,273 @@ stripEl.addEventListener("click", e => {
   } else { startIdx = k; renderStrip(); showStopped(); }
 });
 
-/* ===================== Setlist ===================== */
-const songsEl = $("songs");
-function renderSetlist(playingPos = null){
-  const l = activeSet();
-  $("setSel").innerHTML = data.setlists.map(x => `<option value="${x.id}"${x.id === l.id ? " selected" : ""}>${esc(x.name || "Untitled setlist")}</option>`).join("");
-  $("setName").value = l.name;
-  $("setTitle").textContent = settings.mode === "edit" ? "Setlist" : (l.name || "Setlist");
-  const list = setSongs();
-  songsEl.innerHTML = list.map((s, k) => `
-    <li class="${k === songPos ? "sel" : ""}${playingPos === k ? " playing" : ""}" data-k="${k}">
-      <button type="button" class="songbtn" data-a="pick">
+/* ===================== Small helpers ===================== */
+const clampInt = (v, lo, hi) => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.min(hi, Math.max(lo, n)) : null; };
+const setById = id => data.setlists.find(l => l.id === id) || null;
+const songsOf = l => l ? l.songIds.map(id => data.songs[id]).filter(Boolean) : [];
+const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+function setSummary(l){
+  const list = songsOf(l);
+  if (!list.length) return "No songs yet";
+  return `${plural(list.length, "song")}, about ${fmtMin(list.reduce((a, s) => a + songSeconds(s), 0))}`;
+}
+function songMeta(s){ return [s.artist && esc(s.artist), s.key && "Key " + esc(s.key), s.bpm + " BPM", s.ts].filter(Boolean).join(", "); }
+
+let toastTimer = null;
+function toast(msg){
+  const t = $("toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+}
+// Changes are blocked while the click is running, so nothing shifts under the band.
+function blockedWhilePlaying(){ if (P){ toast("Stop playback first to make changes."); return true; } return false; }
+
+/* ===================== Dialogs ===================== */
+const dlg = $("dlg");
+function ask({ title, message = "", label = "", value = "", placeholder = "", ok = "OK", danger = false, input = true }){
+  return new Promise(resolve => {
+    $("dlgTitle").textContent = title;
+    $("dlgMsg").textContent = message; $("dlgMsg").hidden = !message;
+    $("dlgField").hidden = !input;
+    $("dlgLabel").textContent = label;
+    const inp = $("dlgInput"); inp.value = value; inp.placeholder = placeholder;
+    const okBtn = $("dlgOk"); okBtn.textContent = ok; okBtn.classList.toggle("danger-fill", danger); okBtn.classList.toggle("primary", !danger);
+    let done = false;
+    const finish = v => { if (done) return; done = true; dlg.close(); resolve(v); };
+    $("dlgForm").onsubmit = e => {
+      e.preventDefault();
+      if (input){ const v = inp.value.trim(); if (!v){ inp.focus(); return; } finish(v); }
+      else finish(true);
+    };
+    $("dlgCancel").onclick = () => finish(null);
+    dlg.oncancel = e => { e.preventDefault(); finish(null); };
+    dlg.showModal();
+    if (input){ inp.focus(); inp.select(); } else $("dlgCancel").focus();
+  });
+}
+
+/* ===================== Navigation ===================== */
+// Screens live in the URL hash so the phone's Back gesture works:
+//   #/  #/set/<id>  #/set/<id>/song/<songId>  #/song/<songId>  #/play  #/songs  #/settings
+let route = { name: "setlists" };
+let viewSetId = null;   // setlist open on the setlist screen
+let ed = null;          // song open in the editor
+let edFromSet = null;   // setlist the editor was opened from, if any
+const visited = [];
+
+function parseHash(){
+  const p = (location.hash.replace(/^#\/?/, "") || "").split("/").filter(Boolean);
+  if (p[0] === "set" && p[1] && p[2] === "song" && p[3]) return { name: "song", setId: p[1], songId: p[3] };
+  if (p[0] === "set" && p[1]) return { name: "setlist", setId: p[1] };
+  if (p[0] === "song" && p[1]) return { name: "song", songId: p[1] };
+  if (p[0] === "play") return { name: "player" };
+  if (p[0] === "songs") return { name: "songs" };
+  if (p[0] === "settings") return { name: "settings" };
+  return { name: "setlists" };
+}
+const go = h => { if (location.hash !== h) location.hash = h; else render(); };
+function parentHash(r){
+  if (r.name === "setlist") return "#/";
+  if (r.name === "song") return r.setId ? `#/set/${r.setId}` : "#/songs";
+  if (r.name === "player") return data.activeSet ? `#/set/${data.activeSet}` : "#/";
+  return "#/";
+}
+function goBack(){
+  const parent = parentHash(route);
+  if (visited.length > 1 && visited[visited.length - 2] === parent){ history.back(); }
+  else location.replace(parent);
+}
+document.addEventListener("click", e => { if (e.target.closest("[data-back]")) goBack(); });
+
+function render(){
+  route = parseHash();
+  // Guard routes whose data is gone (deleted setlist or song).
+  if (route.name === "setlist" && !setById(route.setId)) return location.replace("#/");
+  if (route.name === "song" && !data.songs[route.songId]) return location.replace(route.setId && setById(route.setId) ? `#/set/${route.setId}` : "#/songs");
+  const h = location.hash || "#/";
+  if (visited[visited.length - 1] !== h) visited.push(h);
+  if (visited.length > 50) visited.shift();
+
+  document.querySelectorAll(".screen").forEach(s => { s.hidden = s.dataset.screen !== route.name; });
+  const tab = route.name === "songs" || (route.name === "song" && !route.setId) ? "songs" : route.name === "settings" ? "settings" : "setlists";
+  document.querySelectorAll(".tabs a").forEach(a => a.classList.toggle("on", a.dataset.tab === tab));
+  document.body.classList.toggle("on-player", route.name === "player");
+
+  if (route.name === "setlists") renderSetlists();
+  if (route.name === "setlist"){ viewSetId = route.setId; renderSetlistScreen(); }
+  if (route.name === "song"){ ed = data.songs[route.songId]; edFromSet = route.setId || null; renderEditor(); }
+  if (route.name === "player") refreshPlayer();
+  if (route.name === "songs") renderLibrary();
+  updateMini();
+  const titles = { setlists: "Setlists", setlist: (setById(viewSetId) || {}).name, song: ed && ed.title, player: song ? song.title : "Player", songs: "Songs", settings: "Settings" };
+  document.title = `${titles[route.name] || "Cue Light"} · Cue Light`;
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", render);
+
+/* ===================== Setlists screen ===================== */
+function renderSetlists(){
+  const el = $("setCards");
+  if (!data.setlists.length){
+    el.innerHTML = `<li class="empty glass"><h2>No setlists yet</h2><p class="hint">Create one for your next service, then add the songs you’ll play.</p></li>`;
+    return;
+  }
+  el.innerHTML = data.setlists.map(l => {
+    const names = songsOf(l).map(s => esc(s.title || "Untitled song"));
+    const playing = P && l.id === data.activeSet;
+    return `<li class="setcard glass${playing ? " playing" : ""}">
+      <a class="cardmain" href="#/set/${l.id}">
+        <span class="cardname">${esc(l.name || "Untitled setlist")}</span>
+        <span class="meta">${setSummary(l)}${playing ? ", playing now" : ""}</span>
+        ${names.length ? `<span class="preview">${names.slice(0, 4).join(", ")}${names.length > 4 ? `, +${names.length - 4} more` : ""}</span>` : ""}
+      </a>
+      <button class="ib" type="button" data-del="${l.id}" aria-label="Delete ${esc(l.name)}">${icon("trash")}</button>
+    </li>`;
+  }).join("");
+}
+$("setCards").addEventListener("click", e => {
+  const b = e.target.closest("[data-del]"); if (b) deleteSetlist(b.dataset.del);
+});
+async function createSetlist(){
+  if (blockedWhilePlaying()) return;
+  const name = await ask({ title: "New setlist", label: "Name", placeholder: "e.g. Sunday service, Oct 18", ok: "Create" });
+  if (!name) return;
+  const l = { id: newId("l"), name, date: "", songIds: [] };
+  data.setlists.push(l); save();
+  go(`#/set/${l.id}`);
+}
+async function deleteSetlist(id){
+  if (blockedWhilePlaying()) return;
+  const l = setById(id); if (!l) return;
+  const ok = await ask({ title: `Delete “${l.name || "Untitled setlist"}”?`, message: "The setlist is removed. Its songs stay in your Songs library.", ok: "Delete setlist", danger: true, input: false });
+  if (!ok) return;
+  data.setlists = data.setlists.filter(x => x.id !== id);
+  if (data.activeSet === id){ data.activeSet = data.setlists[0] ? data.setlists[0].id : null; loadSongAt(0); }
+  save();
+  if (route.name === "setlist") location.replace("#/"); else renderSetlists();
+  toast("Setlist deleted.");
+}
+$("newSetBtn").addEventListener("click", createSetlist);
+
+/* ===================== One setlist screen ===================== */
+function renderSetlistScreen(){
+  const l = setById(viewSetId); if (!l) return;
+  const list = songsOf(l);
+  $("slName").textContent = l.name || "Untitled setlist";
+  $("slMeta").textContent = setSummary(l);
+  $("slPlay").disabled = !list.length;
+  // One orange button at a time: "Play setlist" when there are songs, "Add a song" when it's empty.
+  $("addSongBtn").classList.toggle("primary", !list.length);
+  const isLoaded = l.id === data.activeSet;
+  $("tracks").innerHTML = list.map((s, k) => {
+    const cls = [isLoaded && k === songPos ? "sel" : "", isLoaded && P && k === songPos ? "playing" : ""].join(" ");
+    return `<li class="${cls}" data-k="${k}">
+      <button type="button" class="songbtn" data-a="open">
         <span class="num">${k + 1}</span>
         <span class="t">${esc(s.title || "Untitled song")}</span>
-        <span class="m">${[s.key && "Key " + esc(s.key), s.bpm + " BPM", s.ts].filter(Boolean).join(", ")}${s.after === "continue" && k < list.length - 1 ? ", goes straight into next" : ""}${s.checked ? "" : '<br><span class="flag">Bar counts unchecked</span>'}</span>
+        <span class="m">${songMeta(s)}${s.after === "continue" && k < list.length - 1 ? ", goes straight into next" : ""}${s.checked ? "" : '<br><span class="flag">Bar counts unchecked</span>'}</span>
       </button>
-      <span class="iconbtns edit-only">
+      <span class="iconbtns">
+        <a class="ib" href="#/set/${l.id}/song/${s.id}" aria-label="Edit ${esc(s.title)}">${icon("pencil")}</a>
         <button class="ib" type="button" data-a="up" aria-label="Move ${esc(s.title)} up"${k === 0 ? " disabled" : ""}>${icon("up")}</button>
         <button class="ib" type="button" data-a="down" aria-label="Move ${esc(s.title)} down"${k === list.length - 1 ? " disabled" : ""}>${icon("down")}</button>
-        <button class="ib" type="button" data-a="remove" aria-label="Remove ${esc(s.title)} from this setlist" title="Remove from setlist (stays in the library)">${icon("x")}</button>
+        <button class="ib" type="button" data-a="remove" aria-label="Remove ${esc(s.title)} from this setlist" title="Remove from setlist (stays in Songs)">${icon("x")}</button>
       </span>
-    </li>`).join("") || `<li><p class="hint">This setlist is empty. Add songs from the library in Edit view.</p></li>`;
-  renderLibrary();
-  const total = list.reduce((a, s) => a + songSeconds(s), 0);
-  $("setFoot").textContent = list.length ? `${list.length} song${list.length > 1 ? "s" : ""}, about ${fmtMin(total)} of music if played as arranged.` : "";
-  $("delSet").hidden = data.setlists.length === 1;
+    </li>`;
+  }).join("") || `<li class="empty"><p class="hint">This setlist is empty. Add the songs you’ll play, in order.</p></li>`;
 }
-songsEl.addEventListener("click", e => {
+$("tracks").addEventListener("click", e => {
   const b = e.target.closest("[data-a]"); if (!b) return;
-  const k = +b.closest("li").dataset.k, ids = activeSet().songIds, a = b.dataset.a;
-  const curId = song && song.id;
-  if (a === "pick"){ loadSongAt(k); refreshAll(); return; }
+  const l = setById(viewSetId); if (!l) return;
+  const k = +b.closest("li").dataset.k, ids = l.songIds, a = b.dataset.a;
+  if (a === "open"){
+    if (P && l.id !== data.activeSet){ toast("Stop playback to switch setlists."); return; }
+    if (P){ go("#/play"); return; }
+    data.activeSet = l.id; loadSongAt(k); save(); go("#/play"); return;
+  }
+  if (blockedWhilePlaying()) return;
+  const curId = l.id === data.activeSet && song ? song.id : null;
   if (a === "up" && k > 0) [ids[k - 1], ids[k]] = [ids[k], ids[k - 1]];
   if (a === "down" && k < ids.length - 1) [ids[k + 1], ids[k]] = [ids[k], ids[k + 1]];
   if (a === "remove") ids.splice(k, 1);
-  const keep = ids.indexOf(curId);
-  loadSongAt(keep >= 0 ? keep : Math.min(k, ids.length - 1));
-  save(); refreshAll();
+  if (l.id === data.activeSet){ const keep = ids.indexOf(curId); loadSongAt(keep >= 0 ? keep : Math.min(k, ids.length - 1)); }
+  save(); renderSetlistScreen();
 });
-/* ----- Song library: every song saved once, reusable in any setlist ----- */
-let libQuery = "";
-function renderLibrary(){
-  const inSet = new Set(activeSet().songIds);
-  const q = libQuery.trim().toLowerCase();
+$("slPlay").addEventListener("click", () => {
+  const l = setById(viewSetId); if (!l || !l.songIds.length) return;
+  if (P && l.id !== data.activeSet){ toast("Stop playback to switch setlists."); return; }
+  if (P){ go("#/play"); return; }
+  data.activeSet = l.id; loadSongAt(0); save();
+  go("#/play");
+  play();
+});
+$("slRename").addEventListener("click", async () => {
+  const l = setById(viewSetId); if (!l) return;
+  const name = await ask({ title: "Rename setlist", label: "Name", value: l.name, ok: "Save" });
+  if (!name) return;
+  l.name = name; save(); renderSetlistScreen();
+});
+$("slDelete").addEventListener("click", () => deleteSetlist(viewSetId));
+
+/* ----- Add a song dialog ----- */
+const addDlg = $("addDlg");
+function renderAddList(){
+  const l = setById(viewSetId); if (!l) return;
+  const inSet = new Set(l.songIds);
+  const q = $("addSearch").value.trim().toLowerCase();
   const all = Object.values(data.songs).sort((a, b) => (a.title || "").localeCompare(b.title || ""));
   const shown = all.filter(s => !q || `${s.title} ${s.artist}`.toLowerCase().includes(q));
-  $("lib").innerHTML = shown.map(s => `
+  $("addList").innerHTML = shown.map(s => `
     <li>
-      <span class="lt">
-        <span class="t">${esc(s.title || "Untitled song")}</span>
-        <span class="m">${[s.artist && esc(s.artist), s.key && "Key " + esc(s.key), s.bpm + " BPM", s.ts, s.sections.length + " sections"].filter(Boolean).join(", ")}</span>
-      </span>
-      ${inSet.has(s.id) ? `<span class="inset">In this setlist</span>`
-        : `<button class="btn small" type="button" data-add="${s.id}" aria-label="Add ${esc(s.title)} to this setlist">${icon("plus")}Add</button>`}
-    </li>`).join("") || `<li><p class="hint">${all.length ? "No songs match that search." : "No songs yet. Create one with New song."}</p></li>`;
+      <span class="lt"><span class="t">${esc(s.title || "Untitled song")}</span><span class="m">${songMeta(s)}</span></span>
+      ${inSet.has(s.id) ? `<span class="inset">Added</span>`
+        : `<button class="btn small" type="button" data-add="${s.id}">${icon("plus")}Add</button>`}
+    </li>`).join("") || `<li><p class="hint">${all.length ? "No songs match that search." : "No saved songs yet. Create a new one above."}</p></li>`;
 }
-$("lib").addEventListener("click", e => {
+$("addSongBtn").addEventListener("click", () => {
+  if (blockedWhilePlaying()) return;
+  $("addSearch").value = ""; renderAddList(); addDlg.showModal();
+});
+$("addSearch").addEventListener("input", renderAddList);
+$("addList").addEventListener("click", e => {
   const b = e.target.closest("[data-add]"); if (!b) return;
-  const ids = activeSet().songIds;
-  ids.push(b.dataset.add); loadSongAt(ids.length - 1); save(); refreshAll();
+  const l = setById(viewSetId); if (!l) return;
+  l.songIds.push(b.dataset.add);
+  if (l.id === data.activeSet && !song) loadSongAt(0);
+  save(); renderAddList(); renderSetlistScreen();
 });
-$("libSearch").addEventListener("input", e => { libQuery = e.target.value; renderLibrary(); });
-$("newSongBtn").addEventListener("click", () => {
-  const s = makeSong({}); data.songs[s.id] = s;
-  const ids = activeSet().songIds; ids.push(s.id);
-  loadSongAt(ids.length - 1); save(); refreshAll();
-  $("fTitle").focus(); $("fTitle").select();
+$("addNew").addEventListener("click", async () => {
+  addDlg.close();
+  const title = await ask({ title: "New song", label: "Song title", placeholder: "e.g. Goodness of God", ok: "Create" });
+  if (!title) return;
+  const s = makeSong({ title }); data.songs[s.id] = s;
+  const l = setById(viewSetId); l.songIds.push(s.id);
+  if (l.id === data.activeSet && !song) loadSongAt(0);
+  save();
+  go(`#/set/${l.id}/song/${s.id}`);
 });
-$("setSel").addEventListener("change", e => { data.activeSet = e.target.value; loadSongAt(0); save(); refreshAll(); });
-$("newSet").addEventListener("click", () => {
-  const l = { id: newId("l"), name: "New setlist", date: "", songIds: [] };
-  data.setlists.push(l); data.activeSet = l.id; loadSongAt(0); save(); refreshAll(); $("setName").focus();
-});
-$("setName").addEventListener("input", e => { activeSet().name = e.target.value; save(); });
-$("setName").addEventListener("change", () => renderSetlist());
-let armDelSet = false;
-$("delSet").addEventListener("click", e => {
-  if (data.setlists.length === 1) return;
-  if (!armDelSet){ armDelSet = true; e.target.textContent = "Click again to delete setlist"; e.target.classList.add("danger"); return; }
-  data.setlists = data.setlists.filter(l => l.id !== data.activeSet);
-  data.activeSet = data.setlists[0].id; armDelSet = false;
-  e.target.textContent = "Delete setlist"; e.target.classList.remove("danger");
-  loadSongAt(0); save(); refreshAll();
-});
-$("delSet").addEventListener("blur", e => { armDelSet = false; e.target.textContent = "Delete setlist"; e.target.classList.remove("danger"); });
+const closeAdd = () => addDlg.close();
+$("addDone").addEventListener("click", closeAdd);
+$("addClose").addEventListener("click", closeAdd);
 
-/* ===================== Song + section editor ===================== */
+/* ===================== Song editor ===================== */
 const rowsEl = $("rows");
+function renderEditor(){
+  if (!ed) return;
+  $("edHeading").textContent = ed.title || "Untitled song";
+  const from = edFromSet && setById(edFromSet);
+  $("edBack").lastChild.textContent = from ? (from.name || "Setlist") : "Songs";
+  $("edOpen").hidden = !from;
+  const locked = !!P;
+  $("edFieldset").disabled = locked; $("edLocked").hidden = !locked;
+  $("fTitle").value = ed.title; $("fArtist").value = ed.artist || ""; $("fKey").value = ed.key || "";
+  $("fBpm").value = ed.bpm; $("fTs").value = ed.ts;
+  $("fCountIn").checked = ed.countIn; $("fAfter").value = ed.after || "stop";
+  $("fChecked").checked = !!ed.checked;
+  renderRows();
+}
 function renderRows(){
-  if (!song){ rowsEl.innerHTML = ""; return; }
-  rowsEl.innerHTML = song.sections.map((s, k) => `
+  if (!ed){ rowsEl.innerHTML = ""; return; }
+  rowsEl.innerHTML = ed.sections.map((s, k) => `
     <div class="row" data-k="${k}">
       <span class="idx">${k + 1}</span>
       <select class="c-type" data-f="type" aria-label="Cue for section ${k + 1}">
@@ -947,71 +1305,91 @@ function renderRows(){
       </select>
       <span class="iconbtns">
         <button class="ib" type="button" data-a="up" aria-label="Move section ${k + 1} up"${k === 0 ? " disabled" : ""}>${icon("up")}</button>
-        <button class="ib" type="button" data-a="down" aria-label="Move section ${k + 1} down"${k === song.sections.length - 1 ? " disabled" : ""}>${icon("down")}</button>
-        <button class="ib" type="button" data-a="del" aria-label="Remove section ${k + 1}"${song.sections.length === 1 ? " disabled" : ""}>${icon("x")}</button>
+        <button class="ib" type="button" data-a="down" aria-label="Move section ${k + 1} down"${k === ed.sections.length - 1 ? " disabled" : ""}>${icon("down")}</button>
+        <button class="ib" type="button" data-a="del" aria-label="Remove section ${k + 1}"${ed.sections.length === 1 ? " disabled" : ""}>${icon("x")}</button>
       </span>
     </div>`).join("");
 }
-const clampInt = (v, lo, hi) => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.min(hi, Math.max(lo, n)) : null; };
-
+// After any edit: save, and if this song is the one loaded in the player, refresh what the player shows.
+function edChanged(full = true){
+  save();
+  if (ed === song){ if (startIdx >= song.sections.length) startIdx = 0; }
+  if (full) renderEditor();
+}
 rowsEl.addEventListener("change", e => {
-  const row = e.target.closest(".row"); if (!row || !song) return;
-  const s = song.sections[+row.dataset.k], f = e.target.dataset.f, v = e.target.value;
+  const row = e.target.closest(".row"); if (!row || !ed) return;
+  const s = ed.sections[+row.dataset.k], f = e.target.dataset.f, v = e.target.value;
   if (f === "type") s.type = v;
   else if (f === "label") s.label = v.slice(0, 24);
   else if (f === "bars") s.bars = clampInt(v, 1, 64) || 1;
   else if (f === "bpm") s.bpm = v === "" ? null : clampInt(v, 30, 260);
   else if (f === "ts") s.ts = v || null;
-  changed();
+  edChanged();
 });
 rowsEl.addEventListener("click", e => {
-  const b = e.target.closest("[data-a]"); if (!b || !song) return;
-  const k = +b.closest(".row").dataset.k, a = b.dataset.a, list = song.sections;
+  const b = e.target.closest("[data-a]"); if (!b || !ed) return;
+  const k = +b.closest(".row").dataset.k, a = b.dataset.a, list = ed.sections;
   if (a === "up" && k > 0) [list[k - 1], list[k]] = [list[k], list[k - 1]];
   if (a === "down" && k < list.length - 1) [list[k + 1], list[k]] = [list[k], list[k + 1]];
-  if (a === "del" && list.length > 1){ list.splice(k, 1); if (startIdx >= list.length) startIdx = list.length - 1; }
-  changed();
+  if (a === "del" && list.length > 1) list.splice(k, 1);
+  edChanged();
 });
 $("addSec").addEventListener("click", () => {
-  if (!song) return;
-  song.sections.push(sec("chorus", 8)); changed();
+  if (!ed) return;
+  ed.sections.push(sec("chorus", 8)); edChanged();
   const last = rowsEl.lastElementChild; last && last.querySelector("select").focus();
 });
-
 $("fTs").innerHTML = TS_OPTIONS.map(t => `<option>${t}</option>`).join("");
-function renderSongPanels(){
-  const on = !!song;
-  ["songFieldset","secFieldset"].forEach(id => { $(id).style.opacity = on ? "" : ".5"; });
-  if (!on) return;
-  $("fTitle").value = song.title; $("fArtist").value = song.artist || ""; $("fKey").value = song.key || "";
-  $("fBpm").value = song.bpm; $("fTs").value = song.ts;
-  $("fCountIn").checked = song.countIn; $("fAfter").value = song.after || "stop";
-  $("fChecked").checked = !!song.checked;
-  renderRows();
-}
-function changed(){ save(); refreshAll(); }
-function refreshAll(){ renderSetlist(); renderSongPanels(); renderStrip(); showStopped(); }
-
-const bindText = (id, field, live) => $(id).addEventListener(live ? "input" : "change", e => { if (!song) return; song[field] = e.target.value; save(); if (!live) refreshAll(); else { renderSetlist(); showStopped(); renderStrip(); } });
-bindText("fTitle", "title", true);
-bindText("fArtist", "artist", false);
-bindText("fKey", "key", true);
-$("fBpm").addEventListener("change", e => { if (!song) return; song.bpm = clampInt(e.target.value, 30, 260) || 72; changed(); });
-$("fTs").addEventListener("change", e => { if (!song) return; song.ts = e.target.value; changed(); });
-$("fCountIn").addEventListener("change", e => { if (!song) return; song.countIn = e.target.checked; changed(); });
-$("fAfter").addEventListener("change", e => { if (!song) return; song.after = e.target.value; changed(); });
-$("fChecked").addEventListener("change", e => { if (!song) return; song.checked = e.target.checked; changed(); });
-let armDelSong = false;
-$("delSong").addEventListener("click", e => {
-  if (!song) return;
-  if (!armDelSong){ armDelSong = true; e.target.textContent = "Click again to delete from every setlist"; e.target.classList.add("danger"); return; }
-  const id = song.id; delete data.songs[id];
-  data.setlists.forEach(l => { l.songIds = l.songIds.filter(x => x !== id); });
-  armDelSong = false; e.target.textContent = "Delete song"; e.target.classList.remove("danger");
-  loadSongAt(songPos); save(); refreshAll();
+$("fTitle").addEventListener("input", e => { if (!ed) return; ed.title = e.target.value; $("edHeading").textContent = ed.title || "Untitled song"; edChanged(false); });
+$("fArtist").addEventListener("change", e => { if (!ed) return; ed.artist = e.target.value; edChanged(false); });
+$("fKey").addEventListener("input", e => { if (!ed) return; ed.key = e.target.value; edChanged(false); });
+$("fBpm").addEventListener("change", e => { if (!ed) return; ed.bpm = clampInt(e.target.value, 30, 260) || 72; edChanged(); });
+$("fTs").addEventListener("change", e => { if (!ed) return; ed.ts = e.target.value; edChanged(); });
+$("fCountIn").addEventListener("change", e => { if (!ed) return; ed.countIn = e.target.checked; edChanged(false); });
+$("fAfter").addEventListener("change", e => { if (!ed) return; ed.after = e.target.value; edChanged(false); });
+$("fChecked").addEventListener("change", e => { if (!ed) return; ed.checked = e.target.checked; edChanged(false); });
+$("edOpen").addEventListener("click", () => {
+  const l = setById(edFromSet); if (!l || !ed) return;
+  if (P){ go("#/play"); return; }
+  data.activeSet = l.id; loadSongAt(Math.max(0, l.songIds.indexOf(ed.id))); save(); go("#/play");
 });
-$("delSong").addEventListener("blur", e => { armDelSong = false; e.target.textContent = "Delete song"; e.target.classList.remove("danger"); });
+$("delSong").addEventListener("click", async () => {
+  if (!ed || blockedWhilePlaying()) return;
+  const n = data.setlists.filter(l => l.songIds.includes(ed.id)).length;
+  const ok = await ask({ title: `Delete “${ed.title || "Untitled song"}”?`,
+    message: n ? `It will also be removed from ${plural(n, "setlist")}. This can’t be undone, unless you have a backup.` : "This can’t be undone, unless you have a backup.",
+    ok: "Delete song", danger: true, input: false });
+  if (!ok) return;
+  const id = ed.id; delete data.songs[id];
+  data.setlists.forEach(l => { l.songIds = l.songIds.filter(x => x !== id); });
+  if (song && song.id === id) loadSongAt(songPos);
+  save(); toast("Song deleted.");
+  location.replace(edFromSet && setById(edFromSet) ? `#/set/${edFromSet}` : "#/songs");
+});
 
+/* ===================== Songs (library) screen ===================== */
+function renderLibrary(){
+  const q = $("libSearch").value.trim().toLowerCase();
+  const all = Object.values(data.songs).sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+  const shown = all.filter(s => !q || `${s.title} ${s.artist}`.toLowerCase().includes(q));
+  $("lib").innerHTML = shown.map(s => {
+    const n = data.setlists.filter(l => l.songIds.includes(s.id)).length;
+    return `<li><a class="librow" href="#/song/${s.id}">
+      <span class="lt"><span class="t">${esc(s.title || "Untitled song")}</span><span class="m">${songMeta(s)}, ${plural(s.sections.length, "section")}</span></span>
+      <span class="inset">${n ? `In ${plural(n, "setlist")}` : "Not in a setlist"}</span>
+    </a></li>`;
+  }).join("") || `<li><p class="hint" style="padding:12px">${all.length ? "No songs match that search." : "No songs yet. Create one with New song."}</p></li>`;
+}
+$("libSearch").addEventListener("input", renderLibrary);
+$("newSongBtn").addEventListener("click", async () => {
+  if (blockedWhilePlaying()) return;
+  const title = await ask({ title: "New song", label: "Song title", placeholder: "e.g. Goodness of God", ok: "Create" });
+  if (!title) return;
+  const s = makeSong({ title }); data.songs[s.id] = s; save();
+  go(`#/song/${s.id}`);
+});
+
+/* ===================== Settings screen ===================== */
 $("fCueMode").value = settings.cueMode;
 $("fClickVol").value = settings.clickVol; $("fCueVol").value = settings.cueVol;
 $("fSplit").checked = settings.split; $("fWake").checked = settings.wake;
@@ -1021,11 +1399,59 @@ $("fCueVol").addEventListener("input", e => { settings.cueVol = +e.target.value;
 $("fSplit").addEventListener("change", e => { settings.split = e.target.checked; applyMix(); save(); });
 $("fWake").addEventListener("change", e => { settings.wake = e.target.checked; save(); });
 
+/* ===================== Player screen ===================== */
+function renderQueue(playingPos = null){
+  const l = activeSet();
+  $("qName").textContent = l ? (l.name || "Setlist") : "No setlist";
+  $("plBack").lastChild.textContent = l ? (l.name || "Setlist") : "Setlists";
+  const list = setSongs();
+  $("queue").innerHTML = list.map((s, k) => `
+    <li class="${k === songPos ? "sel" : ""}${P && k === (playingPos ?? songPos) ? " playing" : ""}" data-k="${k}">
+      <button type="button" class="songbtn" data-a="pick">
+        <span class="num">${k + 1}</span>
+        <span class="t">${esc(s.title || "Untitled song")}</span>
+        <span class="m">${[s.key && "Key " + esc(s.key), s.bpm + " BPM", s.ts].filter(Boolean).join(", ")}${s.checked ? "" : '<br><span class="flag">Bar counts unchecked</span>'}</span>
+      </button>
+    </li>`).join("");
+  $("qFoot").textContent = l ? setSummary(l) + "." : "";
+}
+$("queue").addEventListener("click", e => {
+  const b = e.target.closest("[data-a=pick]"); if (!b) return;
+  if (P){ toast("Stop playback to change songs."); return; }
+  loadSongAt(+b.closest("li").dataset.k); save(); refreshPlayer();
+});
+function refreshPlayer(){
+  if (!activeSet() || !song){
+    $("stTitle").textContent = activeSet() ? "This setlist has no songs" : "No setlist loaded";
+    stSection.textContent = "Pick a setlist";
+    stBar.textContent = ""; $("stMeta").textContent = ""; buildLamps(0);
+    setCue("off", "Open a setlist and tap a song"); $("upNext").textContent = "";
+    $("playBtn").disabled = true;
+    renderQueue(); renderStrip(null);
+    return;
+  }
+  $("playBtn").disabled = false;
+  renderQueue(); renderStrip(); showStopped();
+}
+
+/* ===================== Now-playing bar ===================== */
+function updateMini(ev){
+  const show = !!P && route.name !== "player";
+  $("mini").hidden = !show;
+  document.body.classList.toggle("has-mini", show);
+  if (!P) return;
+  if (ev){
+    $("miniSong").textContent = ev.song.title || "Untitled song";
+    $("miniSec").textContent = ev.countIn ? "Count-in" : `${labelOf(ev.song.sections[ev.i])}, bar ${ev.bar + 1} of ${ev.bars}`;
+  } else if (song){ $("miniSong").textContent = song.title || "Untitled song"; }
+}
+$("miniStop").addEventListener("click", () => stop());
+
 /* ===================== Transport ===================== */
 function toggleLoop(){ loopOn = !loopOn; $("loopBtn").setAttribute("aria-pressed", String(loopOn)); }
 function queueSkip(){ if (P && lastSongDrawn === song && P.i + 1 < song.sections.length){ queued = P.i + 1; lastDrawn = null; } }
 function queueRepeat(){ if (P && lastSongDrawn === song){ queued = P.i; lastDrawn = null; } }
-function stepSong(d){ if (P) return; const n = songPos + d; if (n >= 0 && n < setSongs().length){ loadSongAt(n); refreshAll(); } }
+function stepSong(d){ if (P) return; const n = songPos + d; if (n >= 0 && n < setSongs().length){ loadSongAt(n); save(); refreshPlayer(); } }
 
 $("playBtn").addEventListener("click", () => P ? stop() : play());
 $("loopBtn").addEventListener("click", toggleLoop);
@@ -1033,8 +1459,13 @@ $("skipBtn").addEventListener("click", queueSkip);
 
 document.addEventListener("keydown", e => {
   const tag = (e.target.tagName || "").toLowerCase();
-  if (["input","select","textarea"].includes(tag)) return;
-  if (e.key === " " || e.code === "Space"){ e.preventDefault(); P ? stop() : play(); }
+  if (["input","select","textarea"].includes(tag) || document.querySelector("dialog[open]")) return;
+  const onPlayer = route.name === "player";
+  if (e.key === " " || e.code === "Space"){
+    if (!onPlayer && !P) return;
+    e.preventDefault(); P ? stop() : play();
+  }
+  else if (!onPlayer) return;
   else if (e.key === "l" || e.key === "L"){ toggleLoop(); }
   else if (e.key === "ArrowRight" || e.key === "PageDown"){ e.preventDefault(); P ? queueSkip() : stepSong(1); }
   else if (e.key === "ArrowLeft" || e.key === "PageUp"){ e.preventDefault(); P ? queueRepeat() : stepSong(-1); }
@@ -1096,7 +1527,7 @@ $("importFile").addEventListener("change", async e => {
     setsIn++;
   });
   if (b.activeSet && data.setlists.some(l => l.id === b.activeSet)) data.activeSet = b.activeSet;
-  loadSongAt(0); save(); refreshAll();
+  loadSongAt(0); save(); render();
   backupNote(`Imported ${songsIn} song${songsIn === 1 ? "" : "s"} and ${setsIn} setlist${setsIn === 1 ? "" : "s"}.`);
 });
 
@@ -1108,21 +1539,8 @@ if (!window.claude && "serviceWorker" in navigator && (location.protocol === "ht
   });
 }
 
-/* ===================== Perform / Edit view ===================== */
-// Perform shows only what the team needs live: stage, setlist and arrangement.
-function setMode(m){
-  settings.mode = m === "edit" ? "edit" : "perform";
-  document.body.classList.toggle("perform", settings.mode === "perform");
-  document.querySelectorAll(".viewtoggle button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === settings.mode)));
-  save(); renderSetlist(P ? songPos : null);
-}
-document.querySelector(".viewtoggle").addEventListener("click", e => {
-  const b = e.target.closest("button[data-mode]"); if (b) setMode(b.dataset.mode);
-});
-
 /* ===================== Boot ===================== */
 loadSongAt(0);
-setMode(settings.mode || "perform");
 setPlayingUI(false);
 requestAnimationFrame(frame);
 })();
