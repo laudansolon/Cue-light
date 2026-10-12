@@ -1,6 +1,6 @@
 // Cue Light offline support.
 // Change CACHE_VERSION whenever you upload a new index.html, so phones pick up the update.
-const CACHE_VERSION = "cuelight-v1";
+const CACHE_VERSION = "cuelight-v4";
 const APP_FILES = [
   "./",
   "./index.html",
